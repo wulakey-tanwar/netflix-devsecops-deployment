@@ -67,7 +67,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/gauri17-pro/nextflix.git'
+                git branch: 'main', url: 'https://github.com/wulakey-tanwar/nextflix.git'
             }
         }
         stage("Sonarqube Analysis") {
@@ -98,7 +98,7 @@ pipeline {
         stage("Docker Build Image"){
             steps{
                    
-                sh "docker build --build-arg API_KEY=2af0904de8242d48e8527eeedc3e19d9 -t netflix ."
+                sh "docker build --build-arg API_KEY=809ca6da56423d5352b4e8af4c5b7eaa -t netflix ."
             }
         }
         stage("TRIVY"){
@@ -113,8 +113,8 @@ pipeline {
             steps{
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker'){   
-                    sh "docker tag netflix gauris17/netflix:latest "
-                    sh "docker push gauris17/netflix:latest"
+                    sh "docker tag netflix wulakeytanwar/netflix:latest "
+                    sh "docker push wulakeytanwar/netflix:latest"
                     }
                 }
             }
